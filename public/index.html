@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Truest B2B — Корпоративные решения для бизнеса и производства</title>
+  <meta name="description" content="ERP, электронный документооборот, AI-инструменты, AutoCAD генерация. Экономия миллионов. Решения для бизнеса и производства от Truest." />
+  <style>
+    /* ---- RESET & BASE ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #13131a;
+      --surface2:  #1c1c27;
+      --accent:    #6c5ce7;
+      --accent-hover: #7d6ff0;
+      --green:     #00b894;
+      --orange:    #fdcb6e;
+      --red:       #e17055;
+      --text:      #e8e8f0;
+      --text-muted:#8888aa;
+      --border:    rgba(108,92,231,0.18);
+      --radius:    12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ---- SCROLLBAR ---- */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ---- UTILITIES ---- */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .badge-accent  { background: rgba(108,92,231,0.15); color: var(--accent); border: 1px solid rgba(108,92,231,0.3); }
+    .badge-green   { background: rgba(0,184,148,0.12);  color: var(--green);  border: 1px solid rgba(0,184,148,0.25); }
+    .badge-orange  { background: rgba(253,203,110,0.12);color: var(--orange); border: 1px solid rgba(253,203,110,0.25); }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px; height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    h2.section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    h2.section-title span { color: var(--accent); }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 56px;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo .logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .nav-logo .logo-sub {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: block;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 9px 22px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 0.88rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--accent-hover) !important; transform: translateY(-1px); }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      padding: 140px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(108,92,231,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-tag {
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero h1 .green  { color: var(--green); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(108,92,231,0.35);
+    }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 6px 32px rgba(108,92,231,0.45); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .btn-green {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(0,184,148,0.3);
+    }
+    .btn-green:hover { background: #00c9a0; box-shadow: 0 6px 28px rgba(0,184,148,0.4); }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .hero-trust-item .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* Hero visual panel */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .hero-card-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .hero-metric {
+      background: var(--surface2);
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .hero-metric .val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-metric .lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .hero-metric .val.accent { color: var(--accent); }
+    .hero-metric .val.green  { color: var(--green); }
+    .hero-metric .val.orange { color: var(--orange); }
+
+    .hero-bar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .hero-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-bar-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      width: 90px;
+      flex-shrink: 0;
+    }
+    .hero-bar-track {
+      flex: 1;
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .hero-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      animation: bar-grow 1.2s ease forwards;
+      transform-origin: left;
+    }
+    @keyframes bar-grow {
+      from { width: 0 !important; }
+    }
+    .hero-bar-val {
+      font-size: 0.78rem;
+      font-weight: 700;
+      width: 36px;
+      text-align: right;
+    }
+
+    /* ---- STATS ---- */
+    .stats {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .stat-item {
+      padding: 28px 24px;
+      text-align: center;
+      background: var(--surface);
+      transition: background 0.2s;
+    }
+    .stat-item:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .stat-item:last-child  { border-radius: 0 var(--radius) var(--radius) 0; }
+    .stat-item:hover { background: var(--surface2); }
+
+    .stat-val {
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-lbl {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ---- SOLUTIONS ---- */
+    .solutions {
+      padding: 100px 0;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .sol-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .sol-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .sol-card:hover {
+      border-color: rgba(108,92,231,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .sol-card:hover::after { transform: scaleX(1); }
+
+    .sol-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .sol-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .sol-header-text { flex: 1; }
+
+    .sol-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+    .sol-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .sol-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .sol-features {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sol-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .sol-feature::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .sol-pricing {
+      background: var(--surface2);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .sol-price-setup {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .sol-price-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .sol-saving {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--green);
+      padding: 7px 10px;
+      background: rgba(0,184,148,0.07);
+      border-radius: 8px;
+      border: 1px solid rgba(0,184,148,0.15);
+    }
+    .sol-saving::before { content: '💰'; font-size: 0.85rem; }
+
+    .sol-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      transition: gap 0.2s;
+    }
+    .sol-link:hover { gap: 10px; }
+
+    /* ---- WHY B2B ---- */
+    .why {
+      padding: 90px 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .why-card:hover { border-color: rgba(108,92,231,0.35); }
+
+    .why-vs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .why-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .why-row-label {
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .why-old {
+      color: var(--red);
+      font-weight: 700;
+      text-decoration: line-through;
+      text-decoration-color: rgba(225,112,85,0.5);
+      white-space: nowrap;
+    }
+
+    .why-new {
+      color: var(--green);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .why-arrow {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .why-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .why-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ---- TECHNOLOGIES ---- */
+    .tech {
+      padding: 90px 0;
+    }
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tech-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+    .tech-pill:hover {
+      border-color: var(--accent);
+      background: var(--surface2);
+    }
+    .tech-pill .tech-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .tech-pill.green .tech-dot { background: var(--green); }
+    .tech-pill.orange .tech-dot { background: var(--orange); }
+    .tech-pill.ai { border-color: rgba(108,92,231,0.35); background: rgba(108,92,231,0.07); }
+
+    /* ---- CTA ---- */
+    .cta {
+      padding: 90px 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .cta-left h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .cta-left h2 span { color: var(--accent); }
+    .cta-left p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .cta-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cta-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+    .cta-contact-item:hover { border-color: rgba(108,92,231,0.4); }
+    .cta-contact-icon {
+      width: 38px; height: 38px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .cta-contact-text .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .cta-contact-text .val {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    /* Form */
+    .cta-form {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .cta-form h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .cta-form p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--surface2); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit {
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .form-success .success-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+    .form-success h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--green);
+    }
+    .form-success p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .nav-logo {
+      margin-bottom: 14px;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--text); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-bottom-links a {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: var(--accent); }
+
+    /* ---- FLOATING BUTTONS ---- */
+    .float-btns {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 800;
+    }
+
+    .float-btn {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    .float-btn:hover { transform: scale(1.12); box-shadow: 0 6px 26px rgba(0,0,0,0.45); }
+    .float-btn-tg  { background: #229ED9; }
+    .float-btn-wa  { background: #25D366; }
+
+    .float-tooltip {
+      position: absolute;
+      right: 62px;
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      border: 1px solid var(--border);
+    }
+    .float-btn:hover .float-tooltip { opacity: 1; }
+
+    /* ---- MOBILE NAV ---- */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 66px; left: 0; right: 0;
+      background: rgba(10,10,15,0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 899;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1024px) {
+      .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+
+      .hero { padding: 100px 0 60px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+      .stat-item:last-child  { border-radius: 0 0 var(--radius) var(--radius); }
+      .stat-item:nth-child(2){ border-radius: 0; }
+      .stat-item:nth-child(3){ border-radius: 0; }
+
+      .solutions-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+
+      .cta-inner { grid-template-columns: 1fr; gap: 36px; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      h2.section-title { font-size: 1.6rem; }
+    }
+
+    /* ---- ANIMATIONS ---- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">T</div>
+        <div>
+          <span>Truest</span>
+          <span class="logo-sub">B2B Solutions</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#solutions">Решения</a></li>
+        <li><a href="#tech">Технологии</a></li>
+        <li><a href="#pricing">Цены</a></li>
+        <li><a href="#contact" class="nav-cta">Получить консультацию</a></li>
+      </ul>
+      <div class="nav-burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#solutions" onclick="closeMobile()">Решения</a>
+  <a href="#tech" onclick="closeMobile()">Технологии</a>
+  <a href="#pricing" onclick="closeMobile()">Цены</a>
+  <a href="#contact" onclick="closeMobile()">Контакты</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-glow"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="badge badge-accent">&#9679; Enterprise B2B Platform</span>
+        </div>
+        <h1>
+          B2B решения для<br/>
+          <span class="accent">бизнеса</span> и<br/>
+          <span class="green">производства</span>
+        </h1>
+        <p class="hero-sub">
+          ERP, электронный документооборот, AI‑инструменты, AutoCAD‑генерация.<br/>
+          Production‑ready решения. <strong>Экономия миллионов.</strong>
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">&#128640; Получить демо</a>
+          <a href="#solutions" class="btn btn-outline">&#128196; Все решения</a>
+        </div>
+        <div class="hero-trust">
+          <span class="hero-trust-item"><span class="dot"></span>6 готовых продуктов</span>
+          <span class="hero-trust-item"><span class="dot"></span>200+ автотестов</span>
+          <span class="hero-trust-item"><span class="dot"></span>Production 9.2/10</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-title">Platform Overview</div>
+          <div class="hero-metric-row">
+            <div class="hero-metric">
+              <div class="val accent">6</div>
+              <div class="lbl">Решений</div>
+            </div>
+            <div class="hero-metric">
+              <div class="val green">200+</div>
+              <div class="lbl">Тестов</div>
+            </div>
+            <div class="hero-metric">
+              <div class="val orange">9.2</div>
+              <div class="lbl">Maturity</div>
+            </div>
+            <div class="hero-metric">
+              <div class="val" style="color:var(--text);">AI</div>
+              <div class="lbl">Интеграция</div>
+            </div>
+          </div>
+          <div class="hero-bar-row">
+            <div class="hero-bar-item">
+              <span class="hero-bar-label">ERP / Склад</span>
+              <div class="hero-bar-track">
+                <div class="hero-bar-fill" style="width:92%; background: var(--accent);"></div>
+              </div>
+              <span class="hero-bar-val" style="color:var(--accent);">92%</span>
+            </div>
+            <div class="hero-bar-item">
+              <span class="hero-bar-label">ЭДО</span>
+              <div class="hero-bar-track">
+                <div class="hero-bar-fill" style="width:95%; background: var(--green);"></div>
+              </div>
+              <span class="hero-bar-val" style="color:var(--green);">95%</span>
+            </div>
+            <div class="hero-bar-item">
+              <span class="hero-bar-label">CAD AI</span>
+              <div class="hero-bar-track">
+                <div class="hero-bar-fill" style="width:80%; background: var(--orange);"></div>
+              </div>
+              <span class="hero-bar-val" style="color:var(--orange);">80%</span>
+            </div>
+            <div class="hero-bar-item">
+              <span class="hero-bar-label">Security</span>
+              <div class="hero-bar-track">
+                <div class="hero-bar-fill" style="width:100%; background: var(--green);"></div>
+              </div>
+              <span class="hero-bar-val" style="color:var(--green);">27/27</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <div class="stat-val" style="color:var(--accent);">6</div>
+        <div class="stat-lbl">Готовых решений</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-val" style="color:var(--green);">200+</div>
+        <div class="stat-lbl">Автотестов</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-val" style="color:var(--orange);">AI</div>
+        <div class="stat-lbl">Gemini · GPT-4 · Claude</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-val" style="color:var(--text);">9.2/10</div>
+        <div class="stat-lbl">Production Maturity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="solutions" id="solutions">
+  <div class="container">
+    <div class="section-label">Наши продукты</div>
+    <h2 class="section-title">Готовые <span>B2B решения</span></h2>
+    <p class="section-sub">Каждый продукт — production‑ready, с тестами, документацией и поддержкой.</p>
+
+    <div class="solutions-grid" id="pricing">
+      <!-- CAD AI -->
+      <div class="sol-card fade-in" style="--card-accent: var(--orange);">
+        <div class="sol-header">
+          <div class="sol-icon" style="background:rgba(253,203,110,0.1);">&#9997;</div>
+          <div class="sol-header-text">
+            <div class="sol-name">CAD AI</div>
+            <div class="sol-tagline">Помощник инженеру</div>
+          </div>
+          <span class="badge badge-orange">Новинка</span>
+        </div>
+        <p class="sol-desc">
+          AI‑генерация DXF чертежей. Текстовое описание → JSON → Python → DXF → AutoCAD.
+          Для проектировщиков и инженеров. Замена дорогостоящих лицензий.
+        </p>
+        <div class="sol-features">
+          <span class="sol-feature">Генерация чертежей из текста</span>
+          <span class="sol-feature">Экспорт DXF для AutoCAD</span>
+          <span class="sol-feature">REST API интеграция</span>
+          <span class="sol-feature">Пакетная обработка</span>
+        </div>
+        <div class="sol-saving">Экономия: лицензия AutoCAD ~800 000 ₸/год</div>
+        <div class="sol-pricing">
+          <div class="sol-price-setup">200 000 ₸ <span style="font-size:0.75rem;color:var(--text-muted);font-weight:500;">+ 30 000 ₸/мес</span></div>
+          <div class="sol-price-sub">Внедрение + ежемесячная поддержка</div>
+        </div>
+      </div>
+
+      <!-- Товаровед ERP -->
+      <div class="sol-card fade-in" style="--card-accent: var(--accent);">
+        <div class="sol-header">
+          <div class="sol-icon" style="background:rgba(108,92,231,0.1);">&#128230;</div>
+          <div class="sol-header-text">
+            <div class="sol-name">Товаровед ERP</div>
+            <div class="sol-tagline">товаровед.kz</div>
+          </div>
+          <span class="badge badge-accent">Top</span>
+        </div>
+        <p class="sol-desc">
+          Складской учёт под ключ. Закупки, продажи, бухгалтерия (74 эндпоинта),
+          FIFO себестоимость, мобильное приложение, AI‑консультант, мультитенант.
+        </p>
+        <div class="sol-features">
+          <span class="sol-feature">74 бухгалтерских эндпоинта</span>
+          <span class="sol-feature">FIFO калькуляция себестоимости</span>
+          <span class="sol-feature">Мобильное приложение</span>
+          <span class="sol-feature">AI‑консультант по складу</span>
+          <span class="sol-feature">Мультитенантная архитектура</span>
+        </div>
+        <div class="sol-saving">Production Maturity 9.2/10 — готов к нагрузкам</div>
+        <div class="sol-pricing">
+          <div class="sol-price-setup">150 000 ₸ <span style="font-size:0.75rem;color:var(--text-muted);font-weight:500;">+ 25 000 ₸/мес</span></div>
+          <div class="sol-price-sub">Внедрение + ежемесячная поддержка</div>
+        </div>
+      </div>
+
+      <!-- SmartWorkflow ЭДО -->
+      <div class="sol-card fade-in" style="--card-accent: var(--green);">
+        <div class="sol-header">
+          <div class="sol-icon" style="background:rgba(0,184,148,0.1);">&#128196;</div>
+          <div class="sol-header-text">
+            <div class="sol-name">SmartWorkflow ЭДО</div>
+            <div class="sol-tagline">smartworkflow-nu.vercel.app</div>
+          </div>
+          <span class="badge badge-green">Verified</span>
+        </div>
+        <p class="sol-desc">
+          Электронный документооборот. Создание, согласование, подписание документов.
+          Telegram‑бот @SmartWorkflowBot, Chatwoot CRM интеграция.
+        </p>
+        <div class="sol-features">
+          <span class="sol-feature">Создание и согласование документов</span>
+          <span class="sol-feature">Telegram‑бот уведомления</span>
+          <span class="sol-feature">Chatwoot CRM интеграция</span>
+          <span class="sol-feature">Security audit 27/27 ✓</span>
+        </div>
+        <div class="sol-saving">Экономия: ЭДО подписка от 300 000 ₸/год</div>
+        <div class="sol-pricing">
+          <div class="sol-price-setup">80 000 ₸ <span style="font-size:0.75rem;color:var(--text-muted);font-weight:500;">+ 15 000 ₸/мес</span></div>
+          <div class="sol-price-sub">Внедрение + ежемесячная поддержка</div>
+        </div>
+        <a href="https://smartworkflow-nu.vercel.app" target="_blank" rel="noopener" class="sol-link">Открыть демо &#8594;</a>
+      </div>
+
+      <!-- TruestEDO -->
+      <div class="sol-card fade-in" style="--card-accent: var(--accent);">
+        <div class="sol-header">
+          <div class="sol-icon" style="background:rgba(108,92,231,0.1);">&#128221;</div>
+          <div class="sol-header-text">
+            <div class="sol-name">TruestEDO</div>
+            <div class="sol-tagline">edo.truest.kz</div>
+          </div>
+        </div>
+        <p class="sol-desc">
+          ЭДО с полной интеграцией в ERP‑систему. 198 автотестов,
+          синхронизация контрагентов и документов с товарным учётом.
+        </p>
+        <div class="sol-features">
+          <span class="sol-feature">198 автоматических тестов</span>
+          <span class="sol-feature">Синхронизация с ERP</span>
+          <span class="sol-feature">Контрагенты и документы</span>
+          <span class="sol-feature">Готовая продуктивная среда</span>
+        </div>
+        <div class="sol-pricing">
+          <div class="sol-price-setup">80 000 ₸ <span style="font-size:0.75rem;color:var(--text-muted);font-weight:500;">+ 15 000 ₸/мес</span></div>
+          <div class="sol-price-sub">Внедрение + ежемесячная поддержка</div>
+        </div>
+        <a href="https://edo.truest.kz" target="_blank" rel="noopener" class="sol-link">Открыть edo.truest.kz &#8594;</a>
+      </div>
+
+      <!-- AI Workflow Auditor -->
+      <div class="sol-card fade-in" style="--card-accent: var(--orange);">
+        <div class="sol-header">
+          <div class="sol-icon" style="background:rgba(253,203,110,0.1);">&#129302;</div>
+          <div class="sol-header-text">
+            <div class="sol-name">AI Workflow Auditor</div>
+            <div class="sol-tagline">Оценка пользы AI в процессах</div>
+          </div>
+        </div>
+        <p class="sol-desc">
+          Измеряет реальную пользу AI в ваших бизнес‑процессах.
+          Dashboard, REST API, plugin engine для маркетинга, юриспруденции, ROI менеджеров.
+        </p>
+        <div class="sol-features">
+          <span class="sol-feature">Dashboard с метриками</span>
+          <span class="sol-feature">REST API для интеграции</span>
+          <span class="sol-feature">Плагины: marketing, legal, manager‑roi</span>
+          <span class="sol-feature">Отчёты по департаментам</span>
+        </div>
+        <div class="sol-pricing">
+          <div class="sol-price-setup">100 000 ₸ <span style="font-size:0.75rem;color:var(--text-muted);font-weight:500;">+ 20 000 ₸/мес</span></div>
+          <div class="sol-price-sub">Внедрение + ежемесячная поддержка</div>
+        </div>
+      </div>
+
+      <!-- DanaKnows -->
+      <div class="sol-card fade-in" style="--card-accent: var(--green);">
+        <div class="sol-header">
+          <div class="sol-icon" style="background:rgba(0,184,148,0.1);">&#128172;</div>
+          <div class="sol-header-text">
+            <div class="sol-name">DanaKnows</div>
+            <div class="sol-tagline">danaknows.vercel.app</div>
+          </div>
+        </div>
+        <p class="sol-desc">
+          Калькулятор стоимости проектных работ. 21 000+ строк НТД в базе,
+          курсы НБК, автоматические коммерческие предложения.
+        </p>
+        <div class="sol-features">
+          <span class="sol-feature">21 000+ строк НТД в базе</span>
+          <span class="sol-feature">Актуальные курсы НБК</span>
+          <span class="sol-feature">Генерация КП автоматически</span>
+          <span class="sol-feature">Для проектных организаций</span>
+        </div>
+        <div class="sol-pricing">
+          <div class="sol-price-setup">100 000 ₸ <span style="font-size:0.75rem;color:var(--text-muted);font-weight:500;">+ 15 000 ₸/мес</span></div>
+          <div class="sol-price-sub">Внедрение + ежемесячная поддержка</div>
+        </div>
+        <a href="https://danaknows.vercel.app" target="_blank" rel="noopener" class="sol-link">Открыть демо &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY B2B -->
+<section class="why">
+  <div class="container">
+    <div class="section-label">Сравнение</div>
+    <h2 class="section-title">Почему <span>выгоднее</span> с нами</h2>
+    <p class="section-sub">Мы не продаём воздух. Сравните реальные цены на рынке.</p>
+
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="why-vs">
+          <div class="why-row">
+            <span class="why-row-label">Лицензия AutoCAD</span>
+            <span class="why-old">800 000 ₸/год</span>
+            <span class="why-arrow">&#8594;</span>
+            <span class="why-new">30 000 ₸/мес</span>
+          </div>
+        </div>
+        <div class="why-title">CAD AI — генерация чертежей</div>
+        <div class="why-sub">Заплатите один раз за внедрение и экономьте каждый год. Тот же DXF — без дорогой лицензии.</div>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-vs">
+          <div class="why-row">
+            <span class="why-row-label">1С для склада</span>
+            <span class="why-old">от 500 000 ₸</span>
+            <span class="why-arrow">&#8594;</span>
+            <span class="why-new">150 000 ₸</span>
+          </div>
+        </div>
+        <div class="why-title">Товаровед ERP — склад под ключ</div>
+        <div class="why-sub">Полноценный складской учёт, бухгалтерия, мобильное приложение и AI‑консультант. Maturity 9.2/10.</div>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-vs">
+          <div class="why-row">
+            <span class="why-row-label">ЭДО подписка</span>
+            <span class="why-old">от 300 000 ₸/год</span>
+            <span class="why-arrow">&#8594;</span>
+            <span class="why-new">80 000 ₸</span>
+          </div>
+        </div>
+        <div class="why-title">SmartWorkflow — ваш ЭДО</div>
+        <div class="why-sub">Согласование, подписание, Telegram‑бот и Chatwoot CRM. Security audit 27/27. Развёртывание на вашем сервере.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section class="tech" id="tech">
+  <div class="container">
+    <div class="section-label">Стек</div>
+    <h2 class="section-title">Технологии</h2>
+    <p class="section-sub">Современный, надёжный и масштабируемый технологический стек.</p>
+
+    <div class="tech-grid">
+      <div class="tech-pill"><span class="tech-dot"></span>Python</div>
+      <div class="tech-pill"><span class="tech-dot"></span>FastAPI</div>
+      <div class="tech-pill green"><span class="tech-dot"></span>Next.js</div>
+      <div class="tech-pill green"><span class="tech-dot"></span>React</div>
+      <div class="tech-pill"><span class="tech-dot"></span>PostgreSQL</div>
+      <div class="tech-pill orange"><span class="tech-dot"></span>Redis</div>
+      <div class="tech-pill orange"><span class="tech-dot"></span>Docker</div>
+      <div class="tech-pill green"><span class="tech-dot"></span>Vercel</div>
+      <div class="tech-pill ai"><span class="tech-dot" style="background:var(--accent);"></span>Gemini AI</div>
+      <div class="tech-pill ai"><span class="tech-dot" style="background:var(--accent);"></span>GPT-4</div>
+      <div class="tech-pill ai"><span class="tech-dot" style="background:var(--accent);"></span>Claude</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Pytest</div>
+      <div class="tech-pill"><span class="tech-dot"></span>SQLAlchemy</div>
+      <div class="tech-pill orange"><span class="tech-dot"></span>Alembic</div>
+      <div class="tech-pill green"><span class="tech-dot"></span>Chatwoot CRM</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Telegram Bot API</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + FORM -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-left">
+        <div class="section-label">Контакты</div>
+        <h2>Готовы <span>внедрить</span> решение?</h2>
+        <p>
+          Оставьте заявку — мы свяжемся в течение 2 часов, проведём
+          бесплатную консультацию и покажем демо нужного продукта.
+        </p>
+        <div class="cta-contacts">
+          <a href="https://t.me/BotJasau" target="_blank" rel="noopener" class="cta-contact-item">
+            <div class="cta-contact-icon" style="background:rgba(34,158,217,0.12);">&#128172;</div>
+            <div class="cta-contact-text">
+              <div class="label">Telegram</div>
+              <div class="val" style="color:#229ED9;">@BotJasau</div>
+            </div>
+          </a>
+          <a href="https://wa.me/77010770199" target="_blank" rel="noopener" class="cta-contact-item">
+            <div class="cta-contact-icon" style="background:rgba(37,211,102,0.12);">&#128222;</div>
+            <div class="cta-contact-text">
+              <div class="label">WhatsApp</div>
+              <div class="val" style="color:#25D366;">+7 701 077 0199</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cta-form" id="leadForm">
+        <h3>Получить консультацию</h3>
+        <p>Заполните форму — ответим быстро.</p>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-group">
+            <label for="fname">Ваше имя</label>
+            <input type="text" id="fname" name="name" placeholder="Алихан Беков" required />
+          </div>
+          <div class="form-group">
+            <label for="fphone">Телефон или Telegram</label>
+            <input type="text" id="fphone" name="contact" placeholder="+7 700 000 0000 или @username" required />
+          </div>
+          <div class="form-group">
+            <label for="fcompany">Компания</label>
+            <input type="text" id="fcompany" name="company" placeholder="ТОО «Ваша Компания»" />
+          </div>
+          <div class="form-group">
+            <label for="fproduct">Интересующий продукт</label>
+            <select id="fproduct" name="product">
+              <option value="">Выбрать продукт...</option>
+              <option value="cad">CAD AI — Помощник инженеру</option>
+              <option value="erp">Товаровед ERP</option>
+              <option value="smartworkflow">SmartWorkflow ЭДО</option>
+              <option value="truestedо">TruestEDO</option>
+              <option value="aiauditor">AI Workflow Auditor</option>
+              <option value="danaknows">DanaKnows</option>
+              <option value="all">Несколько решений</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmsg">Комментарий</label>
+            <textarea id="fmsg" name="message" placeholder="Коротко опишите задачу..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">&#128640; Отправить заявку</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">&#9989;</div>
+          <h4>Заявка принята!</h4>
+          <p>Свяжемся в течение 2 часов.<br/>Ожидайте сообщения в Telegram или WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="margin-bottom:14px; display:inline-flex;">
+          <div class="logo-icon">T</div>
+          <div>
+            <span>Truest</span>
+            <span class="logo-sub">B2B Solutions</span>
+          </div>
+        </a>
+        <p>Корпоративные IT‑решения для казахстанского бизнеса. ERP, ЭДО, AI‑инструменты, автоматизация производства.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Решения</h4>
+        <ul>
+          <li><a href="#solutions">CAD AI</a></li>
+          <li><a href="#solutions">Товаровед ERP</a></li>
+          <li><a href="#solutions">SmartWorkflow ЭДО</a></li>
+          <li><a href="#solutions">TruestEDO</a></li>
+          <li><a href="#solutions">AI Workflow Auditor</a></li>
+          <li><a href="#solutions">DanaKnows</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Компания</h4>
+        <ul>
+          <li><a href="#tech">Технологии</a></li>
+          <li><a href="#pricing">Цены</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Связаться</h4>
+        <ul>
+          <li><a href="https://t.me/BotJasau" target="_blank" rel="noopener">&#128172; Telegram @BotJasau</a></li>
+          <li><a href="https://wa.me/77010770199" target="_blank" rel="noopener">&#128222; WhatsApp +77010770199</a></li>
+          <li><a href="https://edo.truest.kz" target="_blank" rel="noopener">&#127760; edo.truest.kz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&#169; 2024&#8211;2026 Truest B2B. Все права защищены.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Публичная оферта</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://t.me/BotJasau" target="_blank" rel="noopener" class="float-btn float-btn-tg" title="Написать в Telegram">
+    <span class="float-tooltip">Telegram @BotJasau</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.58-.46.72-.94.45l-2.6-1.92-1.26 1.21c-.14.14-.26.26-.52.26l.19-2.66 4.84-4.37c.21-.19-.05-.29-.32-.1L8.56 14.5l-2.56-.8c-.56-.17-.57-.56.12-.83l9.96-3.84c.46-.17.87.11.56.77z"/>
+    </svg>
+  </a>
+  <a href="https://wa.me/77010770199" target="_blank" rel="noopener" class="float-btn float-btn-wa" title="Написать в WhatsApp">
+    <span class="float-tooltip">WhatsApp +77010770199</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+  // ---- BURGER MENU ----
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+  }
+  document.addEventListener('click', (e) => {
+    if (!burger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  // ---- NAVBAR SCROLL ----
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar.style.background = 'rgba(10,10,15,0.97)';
+    } else {
+      navbar.style.background = 'rgba(10,10,15,0.85)';
+    }
+  });
+
+  // ---- SCROLL ANIMATIONS ----
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, (i % 4) * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ---- SMOOTH ANCHOR SCROLL ----
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // ---- FORM SUBMIT ----
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    const btn = form.querySelector('.form-submit');
+
+    btn.textContent = 'Отправляем...';
+    btn.disabled = true;
+
+    // Simulate send (replace with real endpoint if needed)
+    setTimeout(() => {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    }, 900);
+  }
+
+  // ---- STAT COUNTER ANIMATION ----
+  function animateCounter(el, target, suffix, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        start = target;
+        clearInterval(timer);
+      }
+      el.textContent = Math.floor(start) + suffix;
+    }, 16);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const items = entry.target.querySelectorAll('.stat-val');
+        items.forEach(item => {
+          const text = item.textContent;
+          if (text === '6') animateCounter(item, 6, '', 600);
+          else if (text === '200+') {
+            animateCounter(item, 200, '+', 800);
+          }
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.querySelector('.stats');
+  if (statsSection) statsObserver.observe(statsSection);
+</script>
+</body>
+</html>
