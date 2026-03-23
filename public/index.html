@@ -977,6 +977,86 @@
       h2.section-title { font-size: 1.6rem; }
     }
 
+    /* ---- DEMOS ---- */
+    .demos {
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .demo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .demo-card:hover {
+      border-color: rgba(108,92,231,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .demo-card:hover::after { transform: scaleX(1); }
+
+    .demo-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      background: rgba(108,92,231,0.1);
+    }
+
+    .demo-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+    .demo-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .demo-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 1024px) {
+      .demos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .demos-grid { grid-template-columns: 1fr; }
+    }
+
     /* ---- ANIMATIONS ---- */
     .fade-in {
       opacity: 0;
@@ -1005,6 +1085,7 @@
       <ul class="nav-links">
         <li><a href="#solutions">Решения</a></li>
         <li><a href="#tech">Технологии</a></li>
+        <li><a href="#demos">Демо</a></li>
         <li><a href="#pricing">Цены</a></li>
         <li><a href="#contact" class="nav-cta">Получить консультацию</a></li>
       </ul>
@@ -1019,6 +1100,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#solutions" onclick="closeMobile()">Решения</a>
   <a href="#tech" onclick="closeMobile()">Технологии</a>
+  <a href="#demos" onclick="closeMobile()">Демо</a>
   <a href="#pricing" onclick="closeMobile()">Цены</a>
   <a href="#contact" onclick="closeMobile()">Контакты</a>
 </div>
@@ -1375,6 +1457,84 @@
       <div class="tech-pill orange"><span class="tech-dot"></span>Alembic</div>
       <div class="tech-pill green"><span class="tech-dot"></span>Chatwoot CRM</div>
       <div class="tech-pill"><span class="tech-dot"></span>Telegram Bot API</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMOS -->
+<section class="demos" id="demos">
+  <div class="container">
+    <div class="section-label">Демо — посмотрите вживую</div>
+    <h2 class="section-title">Посмотрите <span>вживую</span></h2>
+    <p class="section-sub">Рабочие продукты — откройте и оцените</p>
+
+    <div class="demos-grid">
+
+      <!-- Товаровед ERP -->
+      <div class="demo-card fade-in" style="--card-accent: var(--green);">
+        <div class="sol-header">
+          <div class="demo-icon" style="background:rgba(0,184,148,0.1);">&#128230;</div>
+          <div class="sol-header-text">
+            <div class="demo-name">Товаровед ERP</div>
+            <div class="demo-tagline">Складской учёт, бухгалтерия</div>
+          </div>
+        </div>
+        <p class="demo-desc">Полноценная ERP система для управления складом, товарооборотом и бухгалтерским учётом.</p>
+        <a href="https://xn--80adbie4ccpo.kz" target="_blank" rel="noopener" class="btn btn-outline btn-sm">&#128279; Открыть</a>
+      </div>
+
+      <!-- SmartWorkflow -->
+      <div class="demo-card fade-in" style="--card-accent: var(--accent);">
+        <div class="sol-header">
+          <div class="demo-icon" style="background:rgba(108,92,231,0.1);">&#128196;</div>
+          <div class="sol-header-text">
+            <div class="demo-name">SmartWorkflow</div>
+            <div class="demo-tagline">Электронный документооборот</div>
+          </div>
+        </div>
+        <p class="demo-desc">Платформа для автоматизации документооборота между сотрудниками и подразделениями.</p>
+        <a href="https://smartworkflow-nu.vercel.app" target="_blank" rel="noopener" class="btn btn-outline btn-sm">&#128279; Открыть</a>
+      </div>
+
+      <!-- TruestEDO -->
+      <div class="demo-card fade-in" style="--card-accent: var(--orange);">
+        <div class="sol-header">
+          <div class="demo-icon" style="background:rgba(253,203,110,0.1);">&#128203;</div>
+          <div class="sol-header-text">
+            <div class="demo-name">TruestEDO</div>
+            <div class="demo-tagline">ЭДО с интеграцией в ERP</div>
+          </div>
+        </div>
+        <p class="demo-desc">Электронный документооборот с прямой интеграцией в ERP-систему. Обмен документами в одном окне.</p>
+        <a href="https://edo.truest.kz" target="_blank" rel="noopener" class="btn btn-outline btn-sm">&#128279; Открыть</a>
+      </div>
+
+      <!-- DanaKnows -->
+      <div class="demo-card fade-in" style="--card-accent: var(--green);">
+        <div class="sol-header">
+          <div class="demo-icon" style="background:rgba(0,184,148,0.1);">&#129518;</div>
+          <div class="sol-header-text">
+            <div class="demo-name">DanaKnows</div>
+            <div class="demo-tagline">Калькулятор стоимости работ</div>
+          </div>
+        </div>
+        <p class="demo-desc">Интерактивный калькулятор для быстрой оценки стоимости разработки и внедрения проектов.</p>
+        <a href="https://danaknows.vercel.app" target="_blank" rel="noopener" class="btn btn-outline btn-sm">&#128279; Открыть</a>
+      </div>
+
+      <!-- AI-ассистент -->
+      <div class="demo-card fade-in" style="--card-accent: #229ED9;">
+        <div class="sol-header">
+          <div class="demo-icon" style="background:rgba(34,158,217,0.1);">&#129302;</div>
+          <div class="sol-header-text">
+            <div class="demo-name">AI-ассистент</div>
+            <div class="demo-tagline">Задайте любой вопрос</div>
+          </div>
+        </div>
+        <p class="demo-desc">Демо-бот с искусственным интеллектом. Задайте любой вопрос и оцените возможности AI-ассистента.</p>
+        <a href="https://t.me/monkey_ai_demo_bot" target="_blank" rel="noopener" class="btn btn-primary btn-sm">&#128172; Открыть в Telegram</a>
+      </div>
+
     </div>
   </div>
 </section>
