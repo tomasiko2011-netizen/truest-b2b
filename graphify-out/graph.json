@@ -1,0 +1,216 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "package",
+      "community": 1,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "package_name",
+      "community": 1,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "package_version",
+      "community": 1,
+      "norm_label": "version"
+    },
+    {
+      "label": "private",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "package_private",
+      "community": 1,
+      "norm_label": "private"
+    },
+    {
+      "label": "vercel.json",
+      "file_type": "code",
+      "source_file": "vercel.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "vercel",
+      "community": 2,
+      "norm_label": "vercel.json"
+    },
+    {
+      "label": "rewrites",
+      "file_type": "code",
+      "source_file": "vercel.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "vercel_rewrites",
+      "community": 2,
+      "norm_label": "rewrites"
+    },
+    {
+      "label": "Truest B2B Corporate Solutions",
+      "file_type": "concept",
+      "source_file": "public/index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "public_index_truest_b2b",
+      "community": 0,
+      "norm_label": "truest b2b corporate solutions"
+    },
+    {
+      "label": "ERP System",
+      "file_type": "concept",
+      "source_file": "public/index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "public_index_erp",
+      "community": 0,
+      "norm_label": "erp system"
+    },
+    {
+      "label": "Electronic Document Management (EDO)",
+      "file_type": "concept",
+      "source_file": "public/index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "public_index_edo",
+      "community": 0,
+      "norm_label": "electronic document management (edo)"
+    },
+    {
+      "label": "AutoCAD DXF Generation",
+      "file_type": "concept",
+      "source_file": "public/index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "public_index_autocad_generation",
+      "community": 0,
+      "norm_label": "autocad dxf generation"
+    },
+    {
+      "label": "CI Check Workflow",
+      "file_type": "code",
+      "source_file": ".github/workflows/ci.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "workflows_ci_check",
+      "community": 0,
+      "norm_label": "ci check workflow"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_private",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "vercel.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "vercel",
+      "target": "vercel_rewrites",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "public_index_truest_b2b",
+      "target": "public_index_autocad_generation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "public_index_truest_b2b",
+      "target": "public_index_edo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "public_index_truest_b2b",
+      "target": "public_index_erp"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".github/workflows/ci.yml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "workflows_ci_check",
+      "target": "public_index_truest_b2b"
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "6f7ce7a74d2fc49bc6dab4e6c43480ef20274413"
+}

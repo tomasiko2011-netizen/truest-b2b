@@ -1,0 +1,22 @@
+{
+  "/Users/guldana/Documents/New project/truest-b2b/package.json": {
+    "mtime": 1774274653.6358488,
+    "ast_hash": "486f9200d9a13c8d3c0d49f8253919ee",
+    "semantic_hash": "486f9200d9a13c8d3c0d49f8253919ee"
+  },
+  "/Users/guldana/Documents/New project/truest-b2b/vercel.json": {
+    "mtime": 1774274653.1469924,
+    "ast_hash": "24f12e8ec58fde9293420b36869c0169",
+    "semantic_hash": "24f12e8ec58fde9293420b36869c0169"
+  },
+  "/Users/guldana/Documents/New project/truest-b2b/.github/workflows/ci.yml": {
+    "mtime": 1774946272.7035618,
+    "ast_hash": "29c39586579909c5eb81be0fb790f003",
+    "semantic_hash": "29c39586579909c5eb81be0fb790f003"
+  },
+  "/Users/guldana/Documents/New project/truest-b2b/public/index.html": {
+    "mtime": 1774287231.9618423,
+    "ast_hash": "749ab37dc2233ea2609aecfc88f6b300",
+    "semantic_hash": "749ab37dc2233ea2609aecfc88f6b300"
+  }
+}
